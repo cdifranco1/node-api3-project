@@ -57,11 +57,12 @@ router.delete('/:id', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  console.log(req.user.id)
-  console.log(req.body)
   try {
-    const count = update(req.user.id, req.body.name)
-    res.status(200).json(count) 
+    const count = await userDb.update(req.user.id, req.body)
+    if (count === 1){
+      const updatedUser = await userDb.getById(req.user.id)
+      res.status(200).json(updatedUser) 
+    }
   } 
   catch {
     res.status(500).json({ message: "Could not update user."})
