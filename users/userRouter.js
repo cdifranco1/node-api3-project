@@ -9,8 +9,7 @@ router.post('/', validateUser, async (req, res) => {
   try {
     newUser = await userDb.insert(req.body)
     res.status(201).json(newUser)
-  }
-  catch {
+  } catch {
     res.status(500).json({ message: "Error adding user to the database."})
   }
 });
@@ -40,8 +39,7 @@ router.get('/:id/posts', async (req, res) => {
   try {
     const posts = await userDb.getUserPosts(req.user.id)
     res.status(200).json(posts)
-  }
-  catch {
+  } catch {
     res.status(500).json({ message: "Error retrieving posts for user."})
   }
 });
@@ -50,8 +48,7 @@ router.delete('/:id', async (req, res) => {
   try {
     await userDb.remove(req.user.id)
     res.status(204).end()
-  }
-  catch {
+  } catch {
     res.status(500).json({ message: "Could not remove user."})
   }
 });
@@ -63,8 +60,7 @@ router.put('/:id', async (req, res) => {
       const updatedUser = await userDb.getById(req.user.id)
       res.status(200).json(updatedUser) 
     }
-  } 
-  catch {
+  } catch {
     res.status(500).json({ message: "Could not update user."})
   }
 });

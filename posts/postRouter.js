@@ -34,8 +34,7 @@ router.put('/:id', validatePostUserId, async (req, res) => {
       console.log(updatedPost)
       res.status(201).json(updatedPost)
     }
-  }
-  catch {
+  } catch {
     res.status(500).json({ message: "The post could not be updated. "})
   }
 });

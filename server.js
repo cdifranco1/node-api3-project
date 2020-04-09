@@ -1,6 +1,8 @@
-const express = require('express');
+const port = process.env.PORT || 5000
 
+const express = require('express');
 const server = express();
+
 
 server.use(logger)
 // server.use(morgan(":method :url"))
@@ -21,9 +23,8 @@ function logger(req, res, next) {
   next()
 }
 
-
-server.listen(5000, (req, res) => {
-  console.log('Listening at port 5000')
+server.listen(port, (req, res) => {
+  console.log(`Listening at port ${port}`)
 })
 
 module.exports = server;
